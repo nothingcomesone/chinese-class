@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>什么是教育？· 互动课堂活动</title>
+<style>
+  :root{
+    --ink:#2a1e13;
+    --paper:#eedfc7;
+    --paper-tint:#e0d0b6;
+    --ink-tint:#3a2a1d;
+    --gold:#c79a3a;
+    --gold-bg:#fff4d1;
+    --green:#5a8a5a;
+    --green-bg:#e8f5e9;
+    --red:#c43a3a;
+    --red-bg:#fcedee;
+    --blue:#3a6a9a;
+    --blue-bg:#e8f0fe;
+    --yellow:#d9931f;
+    --yellow-bg:#fff4d1;
+    --purple:#7a4a9a;
+    --purple-bg:#f3e8fe;
+    --kai:"楷体","KaiTi","STKaiti","Kaiti SC","华文楷体","BiauKai",serif;
+    --en:Arial,"Helvetica Neue",Helvetica,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--kai);
+    line-height:1.6;
+    min-height:100vh;
+    padding:0;
+  }
+  header{
+    background:var(--ink);
+    color:var(--paper);
+    padding:2rem 1.5rem 1rem;
+    text-align:center;
+    border-bottom:4px solid var(--gold);
+  }
+  header h1{
+    font-family:var(--kai);
+    font-size:clamp(1.8rem,5vw,3rem);
+    margin-bottom:.4rem;
+    letter-spacing:.05em;
+  }
+  header p{
+    font-family:var(--en);
+    font-size:.85rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    opacity:.7;
+  }
+
+  /* Tabs */
+  nav.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    background:var(--ink-tint);
+    border-bottom:2px solid var(--gold);
+    padding:0 .5rem;
+  }
+  nav.tabs button{
+    flex:1 1 auto;
+    min-width:140px;
+    padding:1rem 1rem;
+    background:transparent;
+    border:none;
+    color:var(--paper);
+    font-family:var(--kai);
+    font-size:1rem;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    transition:all .2s;
+    opacity:.6;
+  }
+  nav.tabs button:hover{opacity:1;background:rgba(255,255,255,.05)}
+  nav.tabs button.active{
+    opacity:1;
+    border-bottom-color:var(--gold);
+    background:rgba(255,255,255,.08);
+    font-weight:bold;
+  }
+
+  /* Main panel */
+  main{
+    max-width:1200px;
+    margin:0 auto;
+    padding:2rem 1.5rem 4rem;
+  }
+  section.activity{display:none}
+  section.activity.active{display:block}
+  section.activity h2{
+    font-family:var(--kai);
+    font-size:clamp(1.6rem,4vw,2.4rem);
+    margin-bottom:.6rem;
+    color:var(--ink);
+  }
+  section.activity .subtitle{
+    font-family:var(--en);
+    font-size:.85rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink-tint);
+    opacity:.6;
+    margin-bottom:1rem;
+  }
+  .instruction{
+    background:var(--gold-bg);
+    border-left:4px solid var(--gold);
+    padding:1rem 1.2rem;
+    margin-bottom:1.5rem;
+    border-radius:0 6px 6px 0;
+  }
+  .instruction strong{color:var(--ink)}
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.6rem;
+    margin:1.5rem 0;
+  }
+  .controls button{
+    padding:.7rem 1.3rem;
+    font-family:var(--kai);
+    font-size:1rem;
+    border:2px solid var(--ink);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    border-radius:6px;
+    transition:all .2s;
+    font-weight:bold;
+  }
+  .controls button:hover{
+    background:var(--ink);
+    color:var(--paper);
+    transform:translateY(-1px);
+  }
+  .controls button.primary{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .controls button.primary:hover{
+    background:var(--gold);
+    color:var(--ink);
+    border-color:var(--gold);
+  }
+  .controls button.danger{
+    border-color:var(--red);
+    color:var(--red);
+  }
+  .controls button.danger:hover{background:var(--red);color:var(--paper)}
+
+  /* ─────────── Activity 1: Pyramid Sort ─────────── */
+  .pyramid-game{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2rem;
+    margin-top:1rem;
+  }
+  @media (max-width:760px){.pyramid-game{grid-template-columns:1fr}}
+  .pyramid{
+    display:flex;
+    flex-direction:column;
+    gap:.4rem;
+    background:var(--paper-tint);
+    padding:1.2rem;
+    border-radius:8px;
+    border:2px solid var(--ink-tint);
+  }
+  .pyramid h3{
+    font-family:var(--en);
+    font-size:.8rem;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--ink-tint);
+    margin-bottom:.6rem;
+    text-align:center;
+  }
+  .slot{
+    background:var(--paper);
+    border:2px dashed rgba(42,30,19,.3);
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    min-height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    cursor:pointer;
+    transition:all .2s;
+    position:relative;
+  }
+  .slot:hover{
+    background:var(--gold-bg);
+    border-color:var(--gold);
+  }
+  .slot.hint-target{
+    background:var(--gold-bg);
+    border-color:var(--gold);
+    animation:pulse 1s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(199,154,58,.4)}
+    50%{box-shadow:0 0 0 8px rgba(199,154,58,0)}
+  }
+  .slot .level-label{
+    font-family:var(--en);
+    font-size:.7rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink-tint);
+    opacity:.5;
+    flex-shrink:0;
+  }
+  .slot.top{background:var(--gold-bg);border-color:var(--gold);border-style:solid}
+  .slot.bottom{background:var(--blue-bg);border-color:var(--blue);border-style:solid}
+  .slot.correct{background:var(--green-bg);border:2px solid var(--green)}
+  .slot.wrong{background:var(--red-bg);border:2px solid var(--red);animation:shake .4s}
+  @keyframes shake{
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-4px)}
+    75%{transform:translateX(4px)}
+  }
+  .slot .check-icon{
+    position:absolute;
+    right:.6rem;
+    font-size:1.4rem;
+    font-weight:bold;
+    opacity:0;
+    transition:opacity .3s;
+  }
+  .slot.correct .check-icon{opacity:1;color:var(--green)}
+  .slot.wrong .check-icon{opacity:1;color:var(--red)}
+
+  .card-bank{
+    background:var(--paper-tint);
+    padding:1.2rem;
+    border-radius:8px;
+    border:2px solid var(--ink-tint);
+    display:flex;
+    flex-direction:column;
+    gap:.4rem;
+  }
+  .card-bank h3{
+    font-family:var(--en);
+    font-size:.8rem;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--ink-tint);
+    margin-bottom:.6rem;
+    text-align:center;
+  }
+  .card{
+    background:var(--paper);
+    border:2px solid var(--ink-tint);
+    border-radius:6px;
+    padding:.8rem 1rem;
+    cursor:pointer;
+    transition:all .2s;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .card:hover{
+    background:var(--gold-bg);
+    transform:translateY(-2px);
+    border-color:var(--gold);
+    box-shadow:0 4px 8px rgba(0,0,0,.1);
+  }
+  .card.selected{
+    background:var(--gold);
+    color:var(--ink);
+    border-color:var(--ink);
+    box-shadow:0 4px 12px rgba(199,154,58,.5);
+    transform:scale(1.02);
+  }
+  .card.placed{
+    opacity:.3;
+    pointer-events:none;
+    transform:none;
+  }
+  .card-title{
+    font-family:var(--kai);
+    font-size:1.4rem;
+    font-weight:bold;
+    margin-bottom:.2rem;
+  }
+  .card-en{
+    font-family:var(--en);
+    font-size:.7rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    opacity:.6;
+    margin-bottom:.4rem;
+  }
+  .card-hint{
+    font-family:var(--kai);
+    font-size:.85rem;
+    opacity:.75;
+  }
+
+  .slot .placed-card{
+    flex:1;
+    background:transparent;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+  }
+  .slot .placed-card .card-title{font-size:1.3rem;margin:0}
+  .slot .placed-card .card-en{margin:0}
+  .slot .placed-card .card-hint{display:none}
+
+  /* ─────────── Activity 2: Bio Match ─────────── */
+  .match-game{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:2rem;
+    margin-top:1rem;
+  }
+  @media (max-width:760px){.match-game{grid-template-columns:1fr}}
+  .bio-list{display:flex;flex-direction:column;gap:.8rem}
+  .bio{
+    background:var(--paper-tint);
+    border:2px solid var(--ink-tint);
+    border-radius:8px;
+    padding:1rem 1.2rem;
+    cursor:pointer;
+    transition:all .2s;
+  }
+  .bio.selected{
+    background:var(--gold);
+    border-color:var(--ink);
+    box-shadow:0 4px 12px rgba(199,154,58,.5);
+  }
+  .bio.matched{
+    background:var(--green-bg);
+    border-color:var(--green);
+    cursor:default;
+  }
+  .bio.wrong{background:var(--red-bg);border-color:var(--red);animation:shake .4s}
+  .bio-id{
+    font-family:var(--en);
+    font-size:.75rem;
+    letter-spacing:.2em;
+    color:var(--ink-tint);
+    opacity:.6;
+    margin-bottom:.4rem;
+  }
+  .bio-text{font-family:var(--kai);font-size:.95rem;line-height:1.65}
+  .bio-result{
+    margin-top:.6rem;
+    font-family:var(--kai);
+    font-size:.85rem;
+    color:var(--green);
+    font-weight:bold;
+    display:none;
+  }
+  .bio.matched .bio-result{display:block}
+  .bio-result .paths{opacity:.8;font-weight:normal;margin-top:.2rem}
+
+  .name-list{display:flex;flex-direction:column;gap:.6rem}
+  .name-list h3{
+    font-family:var(--en);
+    font-size:.8rem;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--ink-tint);
+    margin-bottom:.4rem;
+    text-align:center;
+  }
+  .name-card{
+    background:var(--blue-bg);
+    border:2px solid var(--blue);
+    border-radius:8px;
+    padding:1rem;
+    text-align:center;
+    font-family:var(--kai);
+    font-size:1.2rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all .2s;
+  }
+  .name-card:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,.1)}
+  .name-card.used{opacity:.3;pointer-events:none}
+
+  /* ─────────── Activity 3: Translate Quote ─────────── */
+  .quote-pool{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:.8rem;
+    margin-top:1rem;
+    margin-bottom:1.5rem;
+  }
+  .quote-tile{
+    background:var(--paper-tint);
+    border:2px solid var(--ink-tint);
+    border-radius:8px;
+    padding:1rem;
+    cursor:pointer;
+    transition:all .2s;
+  }
+  .quote-tile:hover{background:var(--gold-bg);border-color:var(--gold)}
+  .quote-tile.selected{
+    background:var(--gold);
+    border-color:var(--ink);
+    color:var(--ink);
+  }
+  .quote-tile h4{
+    font-family:var(--kai);
+    font-size:1.3rem;
+    margin-bottom:.4rem;
+  }
+  .quote-tile .source{
+    font-family:var(--en);
+    font-size:.7rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    opacity:.6;
+  }
+  .translation-box{
+    background:var(--purple-bg);
+    border:2px solid var(--purple);
+    border-radius:8px;
+    padding:1.5rem;
+    margin-top:1rem;
+    display:none;
+  }
+  .translation-box.active{display:block}
+  .translation-box h4{
+    font-family:var(--kai);
+    font-size:1.2rem;
+    margin-bottom:.4rem;
+    color:var(--purple);
+  }
+  .translation-box .original{
+    background:rgba(255,255,255,.6);
+    padding:.8rem;
+    border-radius:4px;
+    margin-bottom:1rem;
+    font-style:italic;
+    font-size:1rem;
+  }
+  .translation-box textarea{
+    width:100%;
+    min-height:80px;
+    padding:.8rem;
+    border:1px solid var(--ink-tint);
+    border-radius:4px;
+    font-family:var(--kai);
+    font-size:1rem;
+    line-height:1.6;
+    resize:vertical;
+    margin-bottom:1rem;
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .translation-box label{
+    display:block;
+    font-family:var(--kai);
+    font-weight:bold;
+    margin-bottom:.4rem;
+    color:var(--ink);
+  }
+
+  /* ─────────── Activity 4: Debate ─────────── */
+  .debate-motion{
+    background:var(--ink);
+    color:var(--paper);
+    padding:2rem 1.5rem;
+    border-radius:8px;
+    text-align:center;
+    margin-top:1rem;
+    margin-bottom:1.5rem;
+  }
+  .debate-motion h3{
+    font-family:var(--kai);
+    font-size:1.5rem;
+    margin-bottom:.6rem;
+  }
+  .debate-motion p{
+    font-family:var(--kai);
+    font-size:1.1rem;
+    opacity:.9;
+  }
+  .position-pick{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1rem;
+    margin-bottom:1.5rem;
+  }
+  @media (max-width:600px){.position-pick{grid-template-columns:1fr}}
+  .position{
+    border:3px solid var(--ink-tint);
+    border-radius:12px;
+    padding:1.5rem 1rem;
+    text-align:center;
+    cursor:pointer;
+    transition:all .2s;
+    background:var(--paper);
+  }
+  .position:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(0,0,0,.1)}
+  .position.green{border-color:var(--green)}
+  .position.green.selected{background:var(--green-bg);border-width:4px}
+  .position.red{border-color:var(--red)}
+  .position.red.selected{background:var(--red-bg);border-width:4px}
+  .position.yellow{border-color:var(--yellow)}
+  .position.yellow.selected{background:var(--yellow-bg);border-width:4px}
+  .position .icon{font-size:2.2rem;margin-bottom:.4rem}
+  .position .label{
+    font-family:var(--kai);
+    font-size:1.4rem;
+    font-weight:bold;
+    margin-bottom:.4rem;
+  }
+  .position .desc{
+    font-family:var(--kai);
+    font-size:.9rem;
+    opacity:.8;
+    line-height:1.4;
+  }
+  .arg-box{
+    background:var(--paper-tint);
+    border:2px solid var(--ink-tint);
+    border-radius:8px;
+    padding:1.5rem;
+    margin-top:1rem;
+    display:none;
+  }
+  .arg-box.active{display:block}
+  .arg-box h4{
+    font-family:var(--kai);
+    font-size:1.2rem;
+    margin-bottom:1rem;
+    color:var(--ink);
+  }
+  .arg-row{margin-bottom:1rem}
+  .arg-row label{
+    display:block;
+    font-family:var(--kai);
+    font-weight:bold;
+    margin-bottom:.4rem;
+  }
+  .arg-row input{
+    width:100%;
+    padding:.7rem;
+    border:1px solid var(--ink-tint);
+    border-radius:4px;
+    font-family:var(--kai);
+    font-size:1rem;
+    background:var(--paper);
+    color:var(--ink);
+  }
+
+  /* Feedback toasts */
+  .toast{
+    position:fixed;
+    top:1.5rem;
+    right:1.5rem;
+    background:var(--ink);
+    color:var(--paper);
+    padding:1rem 1.5rem;
+    border-radius:8px;
+    box-shadow:0 8px 24px rgba(0,0,0,.3);
+    font-family:var(--kai);
+    font-size:1rem;
+    z-index:100;
+    opacity:0;
+    transform:translateY(-10px);
+    transition:all .3s;
+    pointer-events:none;
+    max-width:320px;
+  }
+  .toast.show{opacity:1;transform:translateY(0)}
+  .toast.success{background:var(--green);color:#fff}
+  .toast.error{background:var(--red);color:#fff}
+
+  .score{
+    display:inline-block;
+    background:var(--gold-bg);
+    border:2px solid var(--gold);
+    border-radius:20px;
+    padding:.3rem 1rem;
+    font-family:var(--kai);
+    font-weight:bold;
+    margin-left:.5rem;
+  }
+  .score.win{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+
+  footer{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    padding:1.5rem;
+    font-family:var(--en);
+    font-size:.8rem;
+    letter-spacing:.2em;
+    opacity:.7;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>什么是教育？</h1>
+  <p>Interactive Activities · 4 Games</p>
+</header>
+
+<nav class="tabs">
+  <button data-tab="1" class="active">活动 1 · 金字塔排序</button>
+  <button data-tab="2">活动 2 · 人物配对</button>
+  <button data-tab="3">活动 3 · 名言今译</button>
+  <button data-tab="4">活动 4 · 立场辩论</button>
+</nav>
+
+<main>
+
+  <!-- ━━━━━━━━━━━━━━━━ ACTIVITY 1 ━━━━━━━━━━━━━━━━ -->
+  <section class="activity active" id="act1">
+    <h2>教育金字塔排序<span class="score" id="score1">0 / 6</span></h2>
+    <p class="subtitle">Activity 1 · Pyramid Sort</p>
+    <div class="instruction">
+      <strong>玩法：</strong>点击下方一张卡片选中（变金黄色），再点击金字塔的一个层放进去。<br>
+      <strong>目标：</strong>把 6 个概念按"从最初级到最高级"的顺序摆好。<br>
+      <strong>挑战：</strong>哪个该放底层？哪个该放顶端？智慧 vs 学习，谁更高？
+    </div>
+
+    <div class="pyramid-game">
+      <div class="pyramid">
+        <h3>⬆ 金字塔 · 顶 → 底</h3>
+        <div class="slot top" data-level="6" data-correct="智慧">
+          <span class="level-label">第 6 层 · 顶端</span>
+          <span class="check-icon"></span>
+        </div>
+        <div class="slot" data-level="5" data-correct="知识">
+          <span class="level-label">第 5 层</span>
+          <span class="check-icon"></span>
+        </div>
+        <div class="slot" data-level="4" data-correct="能力">
+          <span class="level-label">第 4 层</span>
+          <span class="check-icon"></span>
+        </div>
+        <div class="slot" data-level="3" data-correct="技能">
+          <span class="level-label">第 3 层</span>
+          <span class="check-icon"></span>
+        </div>
+        <div class="slot" data-level="2" data-correct="信息">
+          <span class="level-label">第 2 层</span>
+          <span class="check-icon"></span>
+        </div>
+        <div class="slot bottom" data-level="1" data-correct="学习">
+          <span class="level-label">第 1 层 · 底层</span>
+          <span class="check-icon"></span>
+        </div>
+      </div>
+
+      <div class="card-bank" id="card-bank-1">
+        <h3>✋ 选一张卡 → 点击一层</h3>
+        <!-- Cards will be shuffled by JS -->
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="primary" onclick="checkAct1()">✓ 检查答案</button>
+      <button onclick="revealAct1()">💡 显示正解</button>
+      <button class="danger" onclick="resetAct1()">↻ 重置</button>
+    </div>
+
+    <div class="instruction" style="background:var(--purple-bg);border-left-color:var(--purple);margin-top:2rem">
+      <strong>🔥 挑战题：</strong>如果再加两张卡——「创造力」和「道德」——你会把它们放在哪一层？为什么？
+      <textarea style="width:100%;min-height:60px;margin-top:.6rem;padding:.6rem;font-family:var(--kai);font-size:.95rem;border:1px solid var(--purple);border-radius:4px;background:var(--paper)" placeholder="写下你的想法..."></textarea>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━ ACTIVITY 2 ━━━━━━━━━━━━━━━━ -->
+  <section class="activity" id="act2">
+    <h2>「猜猜 TA」人物配对<span class="score" id="score2">0 / 5</span></h2>
+    <p class="subtitle">Activity 2 · Match the Bio</p>
+    <div class="instruction">
+      <strong>玩法：</strong>点击左边一段生平 → 再点击右边一个名字。猜对了就锁定，并显示这个人的"主导教育路径"。<br>
+      <strong>反转：</strong>每个人其实都走了 2-3 条路径，配对成功后注意看次要路径。
+    </div>
+
+    <div class="match-game">
+      <div class="bio-list" id="bio-list">
+        <!-- Bios will be rendered by JS -->
+      </div>
+      <div class="name-list" id="name-list">
+        <h3>🏷 5 个名字</h3>
+        <!-- Names will be rendered by JS -->
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="danger" onclick="resetAct2()">↻ 重置</button>
+    </div>
+
+    <div class="instruction" style="background:var(--green-bg);border-left-color:var(--green);margin-top:2rem">
+      <strong>💭 反思：</strong>你最像哪一个人？为什么？你的「主导教育路径」是哪一种？
+      <textarea style="width:100%;min-height:60px;margin-top:.6rem;padding:.6rem;font-family:var(--kai);font-size:.95rem;border:1px solid var(--green);border-radius:4px;background:var(--paper)" placeholder="写下你的想法..."></textarea>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━ ACTIVITY 3 ━━━━━━━━━━━━━━━━ -->
+  <section class="activity" id="act3">
+    <h2>名言「今译」挑战</h2>
+    <p class="subtitle">Activity 3 · Modernise the Quote</p>
+    <div class="instruction">
+      <strong>玩法：</strong>下面 6 句古代教育名言，点一句选中 → 在出现的框里写：(1) 用 1-2 句现代汉语翻译；(2) 举一个 2026 年的真实例子。<br>
+      <strong>示范：</strong>「因材施教」→「针对每个学生不同的特点用不同的教法」→「我朋友数学超强但中文很弱，老师让他做高阶数学题但简化中文作文。」
+    </div>
+
+    <div class="quote-pool" id="quote-pool">
+      <!-- Quote tiles will be rendered by JS -->
+    </div>
+
+    <div class="translation-box" id="translation-box">
+      <h4 id="translation-title">你的今译</h4>
+      <div class="original" id="translation-original"></div>
+      <label>(1) 现代汉语翻译（1-2 句）</label>
+      <textarea id="trans-modern" placeholder="例如：根据学生不同的性格 / 资质，给不同的教法"></textarea>
+      <label>(2) 2026 年的真实例子</label>
+      <textarea id="trans-example" placeholder="举一个你自己身边的例子..."></textarea>
+      <button class="primary" style="padding:.7rem 1.3rem;font-family:var(--kai);font-size:1rem;border:2px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;border-radius:6px;font-weight:bold" onclick="saveTranslation()">💾 保存我的版本</button>
+      <div id="translation-saved" style="margin-top:1rem;color:var(--green);font-weight:bold;display:none">✓ 已保存（本机浏览器会记住）</div>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━━━━ ACTIVITY 4 ━━━━━━━━━━━━━━━━ -->
+  <section class="activity" id="act4">
+    <h2>立场卡微辩论</h2>
+    <p class="subtitle">Activity 4 · Position Card Debate</p>
+
+    <div class="debate-motion">
+      <h3>📜 议题</h3>
+      <p>成东青三个人从北大毕业后开英语补习班（新东方）<br>——把名校学习「商业化」。</p>
+      <p style="margin-top:1rem"><strong>这是教育的「成功」，还是「失败」？</strong></p>
+    </div>
+
+    <div class="instruction">
+      <strong>玩法：</strong>选一个立场 → 写下 3 个论据 → 配对辩论 3 分钟 → 听对方说什么让你改变了主意，记下来。
+    </div>
+
+    <div class="position-pick">
+      <div class="position green" data-pos="success" onclick="pickPos('success', this)">
+        <div class="icon">🟢</div>
+        <div class="label">成功</div>
+        <div class="desc">让无数普通孩子<br>通过英语改变命运</div>
+      </div>
+      <div class="position red" data-pos="failure" onclick="pickPos('failure', this)">
+        <div class="icon">🔴</div>
+        <div class="label">失败</div>
+        <div class="desc">把语言学习<br>变成应试机器</div>
+      </div>
+      <div class="position yellow" data-pos="both" onclick="pickPos('both', this)">
+        <div class="icon">🟡</div>
+        <div class="label">都对</div>
+        <div class="desc">副作用 + 机会<br>同样真实</div>
+      </div>
+    </div>
+
+    <div class="arg-box" id="arg-box">
+      <h4 id="arg-title">📝 写下 3 个论据</h4>
+      <div class="arg-row">
+        <label>论据 1：</label>
+        <input type="text" id="arg-1" placeholder="例如：80 年代农村孩子靠英语改变命运..."/>
+      </div>
+      <div class="arg-row">
+        <label>论据 2：</label>
+        <input type="text" id="arg-2" placeholder="第二个支撑你立场的论据..."/>
+      </div>
+      <div class="arg-row">
+        <label>论据 3：</label>
+        <input type="text" id="arg-3" placeholder="第三个论据..."/>
+      </div>
+
+      <div class="arg-row" style="margin-top:1.5rem">
+        <label>💭 辩论后反思：对方说了什么让你觉得对方有道理？</label>
+        <textarea id="arg-reflect" style="width:100%;min-height:80px;padding:.8rem;border:1px solid var(--ink-tint);border-radius:4px;font-family:var(--kai);font-size:1rem;background:var(--paper)" placeholder="写下来 → 下周读《中国合伙人》时回来看这里..."></textarea>
+      </div>
+
+      <button class="primary" style="margin-top:1rem;padding:.7rem 1.3rem;font-family:var(--kai);font-size:1rem;border:2px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;border-radius:6px;font-weight:bold" onclick="saveDebate()">💾 保存我的论据</button>
+      <div id="debate-saved" style="margin-top:1rem;color:var(--green);font-weight:bold;display:none">✓ 已保存（本机浏览器会记住）</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Year 11 Chinese &amp; Literature · Issue 2.2 · 2026 Term 2
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ━━━━━━━━━━━━━━━━ Helpers ━━━━━━━━━━━━━━━━ */
+const $ = (s, p = document) => p.querySelector(s);
+const $$ = (s, p = document) => Array.from(p.querySelectorAll(s));
+
+let toastTimer;
+function toast(msg, type) {
+  const el = $('#toast');
+  el.textContent = msg;
+  el.className = 'toast show ' + (type || '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = 'toast', 2500);
+}
+
+/* ━━━━━━━━━━━━━━━━ Tab Navigation ━━━━━━━━━━━━━━━━ */
+$$('nav.tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    $$('nav.tabs button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    $$('section.activity').forEach(s => s.classList.remove('active'));
+    $('#act' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ━━━━━━━━━━━━━━━━ Activity 1: Pyramid Sort ━━━━━━━━━━━━━━━━ */
+const CONCEPTS = [
+  {id:'学习', en:'Learning',    hint:'不会 → 会',           level:1},
+  {id:'信息', en:'Information', hint:'你不知道 → 知道',     level:2},
+  {id:'技能', en:'Skill',       hint:'会 → 熟练',           level:3},
+  {id:'能力', en:'Ability',     hint:'技能 + 信息 + 努力',  level:4},
+  {id:'知识', en:'Knowledge',   hint:'有用的信息',          level:5},
+  {id:'智慧', en:'Wisdom',      hint:'融会贯通 · 创造',     level:6},
+];
+
+let selectedCard = null;
+
+function renderCardBank() {
+  const bank = $('#card-bank-1');
+  bank.innerHTML = '<h3>✋ 选一张卡 → 点击一层</h3>';
+  const shuffled = [...CONCEPTS].sort(() => Math.random() - 0.5);
+  shuffled.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.id = c.id;
+    card.dataset.level = c.level;
+    card.innerHTML = `
+      <div class="card-title">${c.id}</div>
+      <div class="card-en">${c.en}</div>
+      <div class="card-hint">${c.hint}</div>
+    `;
+    card.addEventListener('click', () => selectCard(card));
+    bank.appendChild(card);
+  });
+}
+
+function selectCard(card) {
+  if (card.classList.contains('placed')) return;
+  // If already selected, deselect
+  if (selectedCard === card) {
+    card.classList.remove('selected');
+    selectedCard = null;
+    clearHints();
+    return;
+  }
+  // Otherwise select this one
+  if (selectedCard) selectedCard.classList.remove('selected');
+  selectedCard = card;
+  card.classList.add('selected');
+  showHints();
+}
+
+function showHints() {
+  $$('.slot').forEach(slot => {
+    if (!slot.querySelector('.placed-card')) {
+      slot.classList.add('hint-target');
+    }
+  });
+}
+function clearHints() {
+  $$('.slot').forEach(slot => slot.classList.remove('hint-target'));
+}
+
+$$('.slot').forEach(slot => {
+  slot.addEventListener('click', () => {
+    // If clicking a slot that has a card, return that card to bank
+    const existing = slot.querySelector('.placed-card');
+    if (existing) {
+      const id = existing.dataset.id;
+      const bankCard = $$('#card-bank-1 .card').find(c => c.dataset.id === id);
+      if (bankCard) {
+        bankCard.classList.remove('placed');
+      }
+      existing.remove();
+      slot.classList.remove('correct', 'wrong');
+      slot.querySelector('.check-icon').textContent = '';
+      return;
+    }
+    // Otherwise place the selected card
+    if (!selectedCard) {
+      toast('先点一张卡片再来点这里 ☝');
+      return;
+    }
+    const cardCopy = selectedCard.cloneNode(true);
+    cardCopy.className = 'placed-card';
+    cardCopy.addEventListener('click', (e) => {
+      e.stopPropagation();
+      slot.click();
+    });
+    slot.insertBefore(cardCopy, slot.querySelector('.check-icon'));
+    selectedCard.classList.add('placed');
+    selectedCard.classList.remove('selected');
+    selectedCard = null;
+    clearHints();
+    updateScore1();
+  });
+});
+
+function updateScore1() {
+  const placed = $$('.slot .placed-card').length;
+  $('#score1').textContent = `${placed} / 6`;
+}
+
+function checkAct1() {
+  let correct = 0;
+  $$('.slot').forEach(slot => {
+    const placed = slot.querySelector('.placed-card');
+    slot.classList.remove('correct', 'wrong');
+    const icon = slot.querySelector('.check-icon');
+    icon.textContent = '';
+    if (!placed) return;
+    if (placed.dataset.id === slot.dataset.correct) {
+      slot.classList.add('correct');
+      icon.textContent = '✓';
+      correct++;
+    } else {
+      slot.classList.add('wrong');
+      icon.textContent = '✗';
+    }
+  });
+  if (correct === 6) {
+    $('#score1').textContent = '6 / 6';
+    $('#score1').classList.add('win');
+    toast('🎉 全对！你真的懂教育的金字塔了。', 'success');
+  } else {
+    toast(`对了 ${correct} / 6 — 再调调位置看看？`);
+  }
+}
+
+function revealAct1() {
+  resetAct1();
+  CONCEPTS.forEach(c => {
+    const slot = $(`.slot[data-correct="${c.id}"]`);
+    const cardCopy = document.createElement('div');
+    cardCopy.className = 'placed-card';
+    cardCopy.dataset.id = c.id;
+    cardCopy.innerHTML = `
+      <div class="card-title">${c.id}</div>
+      <div class="card-en">${c.en}</div>
+    `;
+    slot.insertBefore(cardCopy, slot.querySelector('.check-icon'));
+    slot.classList.add('correct');
+    slot.querySelector('.check-icon').textContent = '✓';
+  });
+  $$('#card-bank-1 .card').forEach(c => c.classList.add('placed'));
+  $('#score1').textContent = '6 / 6';
+  $('#score1').classList.add('win');
+  toast('💡 这就是正解 — 学完了一圈，又回到下一次的学习。', 'success');
+}
+
+function resetAct1() {
+  $$('.slot').forEach(slot => {
+    const placed = slot.querySelector('.placed-card');
+    if (placed) placed.remove();
+    slot.classList.remove('correct', 'wrong');
+    slot.querySelector('.check-icon').textContent = '';
+  });
+  $$('#card-bank-1 .card').forEach(c => {
+    c.classList.remove('placed', 'selected');
+  });
+  selectedCard = null;
+  $('#score1').textContent = '0 / 6';
+  $('#score1').classList.remove('win');
+}
+
+/* ━━━━━━━━━━━━━━━━ Activity 2: Bio Match ━━━━━━━━━━━━━━━━ */
+const BIOS = [
+  {id:'A', text:'9 岁拿全美少年滑雪冠军，但妈妈坚持每年回北京海淀上学。后来考入斯坦福，2026 年在读大三。',
+   answer:'谷爱凌', primaryPath:'学校教育（斯坦福）',
+   secondary:'+ 家庭教育（"海淀妈妈天花板"妈妈的全力托举）+ 自我教育（自律训练）'},
+  {id:'B', text:'云南山区的乡村教师，建了全国第一所全免费女子高中，13 年送出 2000 多个女孩上大学。',
+   answer:'张桂梅', primaryPath:'社会教育',
+   secondary:'+ 学校教育（她自己也是被教育改变命运的人）'},
+  {id:'C', text:'北大法学博士、中国政法大学教授，2019 年开始在 B 站做普法视频，粉丝 3000 万。',
+   answer:'罗翔', primaryPath:'网络教育（B 站普法）',
+   secondary:'+ 学校教育（北大法学）+ 自我教育（终身阅读）'},
+  {id:'D', text:'湖北农村出身，两次高考失利，第三次靠自学考进北大。在北大三年级时得肺结核休学，自学了 800 本英文书。',
+   answer:'俞敏洪', primaryPath:'自我教育',
+   secondary:'+ 学校教育（北大）+ 后来的社会教育（创业新东方）'},
+  {id:'E', text:'武汉大学计算机系毕业，在大学时和老师一起写了《深入解析 Windows》。后来创办了一家手机公司，2024 年又做汽车。',
+   answer:'雷军', primaryPath:'学校教育 + 职业教育（自学编程）',
+   secondary:'+ 自我教育（"风口论"是他自己悟出来的）'},
+];
+
+let selectedBio = null;
+
+function renderAct2() {
+  const bioList = $('#bio-list');
+  bioList.innerHTML = '';
+  BIOS.forEach(b => {
+    const el = document.createElement('div');
+    el.className = 'bio';
+    el.dataset.id = b.id;
+    el.dataset.answer = b.answer;
+    el.innerHTML = `
+      <div class="bio-id">档案 ${b.id}</div>
+      <div class="bio-text">${b.text}</div>
+      <div class="bio-result">
+        ✓ 答对：<strong>${b.answer}</strong><br>
+        <div class="paths">主导路径：${b.primaryPath}<br>${b.secondary}</div>
+      </div>
+    `;
+    el.addEventListener('click', () => {
+      if (el.classList.contains('matched')) return;
+      $$('.bio').forEach(b2 => b2.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedBio = el;
+      toast('选中档案 ' + b.id + ' → 现在点右边的名字');
+    });
+    bioList.appendChild(el);
+  });
+
+  const nameList = $('#name-list');
+  // Keep heading, clear rest
+  nameList.querySelectorAll('.name-card').forEach(c => c.remove());
+  const shuffled = [...BIOS].map(b => b.answer).sort(() => Math.random() - 0.5);
+  shuffled.forEach(name => {
+    const el = document.createElement('div');
+    el.className = 'name-card';
+    el.dataset.name = name;
+    el.textContent = name;
+    el.addEventListener('click', () => {
+      if (el.classList.contains('used')) return;
+      if (!selectedBio) {
+        toast('先点一段档案 ☝');
+        return;
+      }
+      if (selectedBio.dataset.answer === name) {
+        selectedBio.classList.remove('selected');
+        selectedBio.classList.add('matched');
+        el.classList.add('used');
+        selectedBio = null;
+        updateScore2();
+      } else {
+        selectedBio.classList.add('wrong');
+        setTimeout(() => selectedBio.classList.remove('wrong'), 500);
+        toast('不对，再想想 — TA 是谁？');
+      }
+    });
+    nameList.appendChild(el);
+  });
+}
+
+function updateScore2() {
+  const matched = $$('.bio.matched').length;
+  $('#score2').textContent = `${matched} / 5`;
+  if (matched === 5) {
+    $('#score2').classList.add('win');
+    toast('🎉 5 个全对！你已经把"教育路径"这个概念吃透了。', 'success');
+  }
+}
+
+function resetAct2() {
+  $('#score2').classList.remove('win');
+  $('#score2').textContent = '0 / 5';
+  selectedBio = null;
+  renderAct2();
+}
+
+/* ━━━━━━━━━━━━━━━━ Activity 3: Translate Quote ━━━━━━━━━━━━━━━━ */
+const QUOTES = [
+  {id:'q1', text:'有教无类', source:'孔子《论语·卫灵公》',
+   hint:'人人都有受教育的权利，不分贫富贵贱'},
+  {id:'q2', text:'因材施教', source:'孔子《论语·先进》',
+   hint:'根据学生不同的性格 / 资质，给不同的教法'},
+  {id:'q3', text:'思想自由，兼容并包', source:'蔡元培 · 北大改革八字方针',
+   hint:'学校允许不同观点共存，不强加标准答案'},
+  {id:'q4', text:'生活即教育', source:'陶行知',
+   hint:'你怎么生活，就在受什么样的教育'},
+  {id:'q5', text:'教学做合一', source:'陶行知',
+   hint:'教、学、做是同一件事，光听光看 = 没学'},
+  {id:'q6', text:'千教万教教人求真', source:'陶行知',
+   hint:'教育的根本目的是培养真诚 / 真实的人'},
+];
+
+let selectedQuote = null;
+
+function renderAct3() {
+  const pool = $('#quote-pool');
+  pool.innerHTML = '';
+  QUOTES.forEach(q => {
+    const el = document.createElement('div');
+    el.className = 'quote-tile';
+    el.dataset.id = q.id;
+    el.innerHTML = `
+      <h4>${q.text}</h4>
+      <div class="source">${q.source}</div>
+    `;
+    el.addEventListener('click', () => {
+      $$('.quote-tile').forEach(t => t.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedQuote = q;
+      $('#translation-title').textContent = '你的今译：' + q.text;
+      $('#translation-original').innerHTML = `「${q.text}」<br><span style="opacity:.6;font-size:.85em">${q.source} · 提示：${q.hint}</span>`;
+      $('#translation-box').classList.add('active');
+      // Load saved
+      const saved = JSON.parse(localStorage.getItem('translations') || '{}');
+      $('#trans-modern').value = (saved[q.id] && saved[q.id].modern) || '';
+      $('#trans-example').value = (saved[q.id] && saved[q.id].example) || '';
+      $('#translation-saved').style.display = 'none';
+    });
+    pool.appendChild(el);
+  });
+}
+
+function saveTranslation() {
+  if (!selectedQuote) return;
+  const saved = JSON.parse(localStorage.getItem('translations') || '{}');
+  saved[selectedQuote.id] = {
+    modern: $('#trans-modern').value,
+    example: $('#trans-example').value,
+  };
+  localStorage.setItem('translations', JSON.stringify(saved));
+  $('#translation-saved').style.display = 'block';
+  toast('保存成功 — 下次打开还在', 'success');
+}
+
+/* ━━━━━━━━━━━━━━━━ Activity 4: Debate ━━━━━━━━━━━━━━━━ */
+let currentPos = null;
+const POS_LABELS = {success:'🟢 成功', failure:'🔴 失败', both:'🟡 都对'};
+
+function pickPos(pos, el) {
+  $$('.position').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  currentPos = pos;
+  $('#arg-title').innerHTML = `📝 你的立场：${POS_LABELS[pos]} — 写下 3 个论据`;
+  $('#arg-box').classList.add('active');
+  // Load saved
+  const saved = JSON.parse(localStorage.getItem('debate') || '{}');
+  if (saved.pos === pos) {
+    $('#arg-1').value = saved.arg1 || '';
+    $('#arg-2').value = saved.arg2 || '';
+    $('#arg-3').value = saved.arg3 || '';
+    $('#arg-reflect').value = saved.reflect || '';
+  } else {
+    $('#arg-1').value = '';
+    $('#arg-2').value = '';
+    $('#arg-3').value = '';
+    $('#arg-reflect').value = '';
+  }
+  $('#debate-saved').style.display = 'none';
+}
+
+function saveDebate() {
+  if (!currentPos) return;
+  localStorage.setItem('debate', JSON.stringify({
+    pos: currentPos,
+    arg1: $('#arg-1').value,
+    arg2: $('#arg-2').value,
+    arg3: $('#arg-3').value,
+    reflect: $('#arg-reflect').value,
+  }));
+  $('#debate-saved').style.display = 'block';
+  toast('保存成功 — 下次打开还在', 'success');
+}
+
+/* ━━━━━━━━━━━━━━━━ Init ━━━━━━━━━━━━━━━━ */
+renderCardBank();
+renderAct2();
+renderAct3();
+</script>
+
+</body>
+</html>
