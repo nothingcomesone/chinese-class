@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 4 · 教育议题 · 6 个电影片段 — Year 11 C&L 2026 · St Augustine's College</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Theme: 🌊 靛蓝瓷 — Indigo Porcelain */
+    --ink:#0a1f3d; --ink-rgb:10,31,61;
+    --paper:#f1f3f5; --paper-rgb:241,243,245;
+    --paper-tint:#e4e8ec; --ink-tint:#152a4a;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --serif-en:"Playfair Display","Source Serif 4",Georgia,serif;
+    --serif-zh:"Noto Serif SC",source-han-serif-sc,serif;
+    --sans-zh:"Noto Sans SC",source-han-sans-sc,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);color:var(--paper);font-family:var(--sans-zh);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;transition:opacity 1.2s ease}
+  canvas#bg-light{opacity:0}
+  canvas#bg-dark{opacity:1}
+  body.light-bg canvas#bg-light{opacity:1}
+  body.light-bg canvas#bg-dark{opacity:0}
+  #deck{position:fixed;inset:0;width:10000vw;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .9s cubic-bezier(.77,0,.175,1);z-index:10;will-change:transform}
+  .slide{width:100vw;height:100vh;flex:0 0 100vw;position:relative;padding:6vh 6vw 10vh 6vw;display:flex;flex-direction:column;overflow:hidden}
+  .slide.light{color:var(--ink)}
+  .slide.dark{color:var(--paper)}
+  .slide::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;transition:background .7s ease}
+  .slide.light::before{background:rgba(var(--paper-rgb),.82);backdrop-filter:blur(3px)}
+  .slide.dark::before{background:rgba(var(--ink-rgb),.80);backdrop-filter:blur(3px)}
+  .slide.hero.light::before{background:rgba(var(--paper-rgb),.18);backdrop-filter:none}
+  .slide.hero.dark::before{background:rgba(var(--ink-rgb),.14);backdrop-filter:none}
+  .slide.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
+  .slide.hero.light::after{background:linear-gradient(180deg,rgba(var(--paper-rgb),.28) 0%,rgba(var(--paper-rgb),0) 14%,rgba(var(--paper-rgb),0) 86%,rgba(var(--paper-rgb),.28) 100%)}
+  .slide.hero.dark::after{background:linear-gradient(180deg,rgba(var(--ink-rgb),.32) 0%,rgba(var(--ink-rgb),0) 14%,rgba(var(--ink-rgb),0) 86%,rgba(var(--ink-rgb),.32) 100%)}
+  .chrome{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.2em;text-transform:uppercase;opacity:.62}
+  .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.18em;text-transform:uppercase;opacity:.5}
+  .frame{flex:1;display:flex;flex-direction:column;min-height:0}
+  .frame.grid-2-7-5,.frame.grid-2-6-6,.frame.grid-2-8-4{display:grid}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-bottom:2.2vh}
+  .h-hero{font-family:var(--serif-zh);font-weight:900;font-size:10vw;line-height:.96;letter-spacing:-.02em}
+  .h-xl{font-family:var(--serif-zh);font-weight:700;font-size:6.2vw;line-height:1.08;letter-spacing:-.01em}
+  .h-sub{font-family:var(--serif-zh);font-weight:500;font-size:3.1vw;line-height:1.25;opacity:.7}
+  .h-md{font-family:var(--serif-zh);font-weight:600;font-size:2.3vw;line-height:1.3}
+  .lead{font-family:var(--serif-zh);font-weight:400;font-size:1.75vw;line-height:1.5;opacity:.86}
+  .body-zh{font-family:var(--sans-zh);font-weight:400;font-size:max(15px,1.22vw);line-height:1.75;opacity:.82}
+  .body-serif{font-family:var(--serif-zh);font-weight:400;font-size:max(15px,1.3vw);line-height:1.65;opacity:.88}
+  .meta-row{display:flex;gap:1.2em;align-items:baseline;flex-wrap:wrap;font-family:var(--mono);font-size:max(12px,.92vw);letter-spacing:.16em;text-transform:uppercase;opacity:.62}
+  .grid-2-7-5{display:grid;grid-template-columns:7fr 5fr;gap:3vw 4vh;align-items:start}
+  .grid-2-6-6{display:grid;grid-template-columns:1fr 1fr;gap:3vw 4vh;align-items:start}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:4vw;flex:1;align-content:center}
+  .grid-6{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:3vh 3vw;flex:1;align-content:center}
+  .stat-card{display:flex;flex-direction:column;gap:.8vh;align-items:flex-start;padding-top:1.6vh;border-top:1px solid currentColor;border-color:rgba(127,127,127,.3)}
+  .stat-card .stat-label{font-family:var(--mono);font-size:max(10px,.78vw);letter-spacing:.24em;text-transform:uppercase;opacity:.55}
+  .stat-card .stat-nb{font-family:var(--serif-en);font-weight:800;font-size:5.8vw;line-height:.9;letter-spacing:-.03em;font-feature-settings:"tnum";margin-top:.4vh}
+  .stat-card .stat-note{font-family:var(--sans-zh);font-weight:400;font-size:max(13px,1.05vw);line-height:1.5;opacity:.72;margin-top:.6vh}
+  .grid-3 .stat-card .stat-nb{font-size:5.4vw}
+  .grid-6 .stat-card .stat-nb{font-size:2.6vw}
+  .grid-6 .stat-card{padding-top:1.2vh}
+  .grid-6 .stat-card .stat-note{font-size:max(11px,.92vw);line-height:1.45}
+  .pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2vw}
+  .pipeline[data-cols="3"]{grid-template-columns:repeat(3,1fr)}
+  .pipeline[data-cols="4"]{grid-template-columns:repeat(4,1fr)}
+  .step{display:flex;flex-direction:column;gap:.8vh;padding-top:1.4vh;border-top:1px solid currentColor;border-color:rgba(127,127,127,.35)}
+  .step-nb{font-family:var(--serif-en);font-style:italic;font-weight:500;font-size:1.15vw;opacity:.45}
+  .step-title{font-family:var(--sans-zh);font-weight:700;font-size:1.55vw;letter-spacing:.01em;line-height:1.2}
+  .step-desc{font-family:var(--sans-zh);font-weight:400;font-size:max(12px,.95vw);line-height:1.45;opacity:.72}
+  .callout{padding:3vh 2.4vw;border-left:3px solid currentColor;position:relative;font-family:var(--serif-zh);font-size:max(15px,1.2vw);line-height:1.55;opacity:.92}
+  .slide.light .callout{background:rgba(var(--ink-rgb),.05)}
+  .slide.dark .callout{background:rgba(var(--paper-rgb),.06)}
+  .callout-src{display:block;margin-top:1.6vh;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+  .q-big{font-family:var(--serif-zh);font-weight:600;font-size:max(17px,1.6vw);line-height:1.42}
+  em{font-style:italic;font-family:var(--serif-en)}
+  .en{font-family:var(--serif-en);font-style:italic;font-weight:500}
+  /* Clip frame slide — "play this clip" cue */
+  .clip-tag{display:inline-block;font-family:var(--mono);font-size:max(11px,.95vw);letter-spacing:.24em;text-transform:uppercase;padding:.6em 1.2em;border:1.5px solid currentColor;opacity:.85;margin-bottom:3vh}
+  .clip-tag .clip-num{font-weight:600;letter-spacing:.18em}
+  .clip-time{font-family:var(--serif-en);font-style:italic;font-weight:500;font-size:1.6vw;opacity:.65;margin-left:1em}
+  .play-icon{display:inline-block;width:.7em;height:.7em;background:currentColor;clip-path:polygon(0 0,100% 50%,0 100%);margin-right:.5em;vertical-align:-.05em}
+  .scene-quote{font-family:var(--serif-zh);font-weight:400;font-size:max(15px,1.25vw);line-height:1.85;opacity:.92;padding-left:1.4vw;border-left:2px solid currentColor;border-color:rgba(127,127,127,.45)}
+  .scene-quote em{font-style:italic;color:inherit;opacity:.7;font-family:var(--serif-zh)}
+  .role{font-family:var(--mono);font-weight:500;font-size:.78em;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-right:.4em}
+  #nav{position:fixed;left:50%;bottom:2.6vh;transform:translateX(-50%);z-index:30;display:flex;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.18);backdrop-filter:blur(10px)}
+  #nav .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s ease;border:0;padding:0}
+  #nav .dot:hover{background:rgba(255,255,255,.5);transform:scale(1.15)}
+  #nav .dot.active{background:rgba(255,255,255,.95);width:20px;border-radius:999px}
+  body.light-bg #nav{background:rgba(255,255,255,.25)}
+  body.light-bg #nav .dot{background:rgba(var(--ink-rgb),.25)}
+  body.light-bg #nav .dot.active{background:rgba(var(--ink-rgb),.9)}
+  #hint{position:fixed;bottom:3vh;right:3vw;z-index:30;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;mix-blend-mode:difference;color:#aaa}
+  @media (max-width:900px){.h-hero{font-size:14vw}.h-xl{font-size:9vw}.grid-2-7-5,.grid-2-6-6{grid-template-columns:1fr}.grid-6{grid-template-columns:repeat(2,1fr)}.pipeline{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<canvas id="bg-dark" class="bg"></canvas>
+<canvas id="bg-light" class="bg"></canvas>
+<div id="hint">← → 翻页 · ESC 索引</div>
+
+<div id="deck">
+
+<!-- 1 · Cover -->
+<section class="slide hero dark">
+  <div class="chrome"><div>Year 11 Chinese &amp; Literature · 2026</div><div>St Augustine's · Mr Sun</div></div>
+  <div class="frame" style="display:grid;gap:4vh;align-content:center;min-height:80vh">
+    <div class="kicker">议题 2.2 · 教育在年轻人生活中的位置 · Week 4</div>
+    <h1 class="h-hero">教育议题</h1>
+    <h2 class="h-sub">6 个电影片段 · 6 个议题概念 ·《中国合伙人》</h2>
+    <p class="lead" style="max-width:66vw">
+      放一段电影，讲一个议题。从 1980 年的祠堂下跪，到 1990 年代废弃工厂的「Loser 演讲」——三十年里，三个朋友用六种方式回答「什么是教育」。
+    </p>
+    <div class="meta-row"><span>Term 2 · Week 4</span><span>·</span><span>22 Slides</span><span>·</span><span>~110 min Lesson 1 + 60 min Lesson 2</span></div>
+  </div>
+  <div class="foot"><div>《中国合伙人》前后半场 · 教育议题全集</div><div>— Week 4 —</div></div>
+</section>
+
+<!-- 2 · Lesson goals -->
+<section class="slide light">
+  <div class="chrome"><div>Week 4 · 教学目标</div><div>Act 0 · 02 / 22</div></div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker">这节课结束时，你能</div>
+    <h2 class="h-xl" style="margin-bottom:4vh">四件事，一周完成。</h2>
+    <div class="pipeline" data-cols="4">
+      <div class="step"><span class="step-nb">01</span><div class="step-title">看完 6 段电影片段</div><div class="step-desc">每段一个议题概念，覆盖 NotebookLM 4 大 anchor + 2 个高频考点。</div></div>
+      <div class="step"><span class="step-nb">02</span><div class="step-title">掌握 6 个议题概念</div><div class="step-desc">教育的本质 · 公平 · 多元化 · 与生活的关联 · 批判思维 · 中西差异。</div></div>
+      <div class="step"><span class="step-nb">03</span><div class="step-title">HSC Q3 范题</div><div class="step-desc">用 Loser 演讲拆解 (a)(b)(c) 三段式 close-reading。</div></div>
+      <div class="step"><span class="step-nb">04</span><div class="step-title">HSC Q4 跨文本</div><div class="step-desc">写出 §1 + §2（寂寞十七岁 vs 中国合伙人）。</div></div>
+    </div>
+  </div>
+  <div class="foot"><div>Lesson goals · today's four objectives</div><div>— 02 —</div></div>
+</section>
+
+<!-- 3 · 议题广角 时间轴 -->
+<section class="slide dark">
+  <div class="chrome"><div>议题广角 · 教育的 700 年</div><div>Panorama · 03 / 22</div></div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker">在看电影之前——先看看「教育」这个词在中文世界的来历</div>
+    <h2 class="h-xl" style="margin-bottom:4vh">从科举到内卷，<br>700 年的同一个问题。</h2>
+    <div class="grid-3">
+      <div class="stat-card">
+        <span class="stat-label">605 · 隋朝创科举</span>
+        <span class="stat-nb">1300<span style="font-family:var(--serif-zh);font-size:.38em;letter-spacing:0;opacity:.72;margin-left:.14em">年</span></span>
+        <span class="stat-note">「万般皆下品，唯有读书高」——教育与上升通道首次绑定。</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">1977 · 邓小平 恢复高考</span>
+        <span class="stat-nb">4.7<span style="font-family:var(--serif-zh);font-size:.38em;letter-spacing:0;opacity:.72;margin-left:.14em">%</span></span>
+        <span class="stat-note">570 万考生，27 万录取——窄门重启，但仍是窄门。</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">2024 · 当代</span>
+        <span class="stat-nb">40<span style="font-family:var(--serif-zh);font-size:.38em;letter-spacing:0;opacity:.72;margin-left:.14em">%</span></span>
+        <span class="stat-note">1342 万考生，本科约 40%——门变宽了，但门里的路开始分叉。</span>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:4vh;max-width:80vw">三个时代，三个录取率——同一个问题：<em>我配不配站在这里？</em></p>
+  </div>
+  <div class="foot"><div>背景知识 · 没有这条时间轴，电影里的「跪」「签证」「Loser 演讲」都失去重量</div><div>— 03 —</div></div>
+</section>
+
+<!-- 4 · 6 concepts overview -->
+<section class="slide light">
+  <div class="chrome"><div>议题 2.2 · 概念地图</div><div>Map · 04 / 22</div></div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker">本周要带走的 6 个概念</div>
+    <h2 class="h-xl" style="margin-bottom:4vh">一片段，一概念。</h2>
+    <div class="grid-6">
+      <div class="stat-card">
+        <span class="stat-label">Clip 1 · 跪/背词典</span>
+        <span class="stat-nb">教育改变命运</span>
+        <span class="stat-note">+ 中国传统教育 · 教育公平</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Clip 2 · 1984 签证</span>
+        <span class="stat-nb">教育公平</span>
+        <span class="stat-note">+ 出国压力</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Clip 3 · broken English</span>
+        <span class="stat-nb">教育的本质</span>
+        <span class="stat-note">+ 教育权威解构</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Clip 4 · 阶梯教室</span>
+        <span class="stat-nb">批判性思维</span>
+        <span class="stat-note">+ 中西教育差异</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Clip 5 · Expel/Impel</span>
+        <span class="stat-nb">内驱力</span>
+        <span class="stat-note">+ 教育目的的多元化</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Clip 6 · Loser 演讲</span>
+        <span class="stat-nb">失败教育</span>
+        <span class="stat-note">+ 多元目的 · 情感教育</span>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>每播一段电影 · 讲一个概念 · 共 6 轮</div><div>— 04 —</div></div>
+</section>
+
+<!-- ============ CLIP 1: 跪/背词典 ============ -->
+<!-- 5 · Clip 1 frame -->
+<section class="slide hero light">
+  <div class="chrome"><div>Clip 1 · 1980 江南</div><div>Play · 05 / 22</div></div>
+  <div class="frame" style="display:grid;gap:4vh;align-content:center;min-height:80vh">
+    <div class="clip-tag"><span class="play-icon"></span><span class="clip-num">CLIP 01</span> · SCENE 16 + 17<span class="clip-time">~4 min</span></div>
+    <h1 class="h-hero" style="font-size:8.4vw">下跪求学 · 背词典</h1>
+    <p class="lead" style="max-width:60vw">江南祠堂的水烟、村长的点头、母亲的一声叹息——一个农村少年第三次跪求高考。</p>
+    <div class="meta-row"><span>议题概念 →</span><span>教育改变命运</span><span>·</span><span>中国传统教育</span><span>·</span><span>教育公平</span></div>
+  </div>
+  <div class="foot"><div>请播放视频 · Then proceed</div><div>— · —</div></div>
+</section>
+
+<!-- 6 · Clip 1 concept -->
+<section class="slide dark">
+  <div class="chrome"><div>Clip 1 · 议题概念</div><div>Concept · 06 / 22</div></div>
+  <div class="frame grid-2-6-6" style="padding-top:5vh">
+    <div>
+      <div class="kicker">看完 Clip 1 · 我们要带走</div>
+      <h2 class="h-xl" style="font-size:5vw;margin-bottom:3vh">教育——<br>是阶层流动的<em>窄门</em>。</h2>
+      <p class="body-serif" style="max-width:38vw">
+        在中国 1300 年的科举传统里，「教育」从来不是一个抽象名词——<br>它是一个<em>具体的姿势</em>：跪着、借钱、背词典、连「America」那一页都不容许放弃。<br><br>
+        Cheng 的下跪不是耻辱，是<em>策略</em>——<br>在祠堂的礼制坐标里，<br>这是一个农村少年唯一能用的<em>身体语言</em>。
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2vh">
+      <div class="callout">
+        <div class="q-big">关键金句</div>
+        <p class="body-zh" style="margin-top:1vh;font-family:var(--serif-zh)">「美国人永远不懂——<em>中国的英雄是可以跪的</em>。」</p>
+        <span class="callout-src">孟晓骏 VO · Scene 16</span>
+      </div>
+      <div class="callout">
+        <div class="q-big">关键画面</div>
+        <p class="body-zh" style="margin-top:1vh">小侄子站在桌上撒尿，浇湿了「America」那一页——「美国梦」从一开始就<em>湿了</em>。</p>
+        <span class="callout-src">Scene 17 · 视觉反差</span>
+      </div>
+      <div class="callout">
+        <div class="q-big">课堂讨论 ↓</div>
+        <p class="body-zh" style="margin-top:1vh">如果 Cheng 出生在 2024 年悉尼，他还会「跪」吗？教育公平真的来了吗？</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>把这一概念写进 worksheet Part B · 第 1 行</div><div>— 06 —</div></div>
+</section>
+
+<!-- ============ CLIP 2: 签证窗口 ============ -->
+<!-- 7 · Clip 2 frame -->
+<section class="slide hero dark">
+  <div class="chrome"><div>Clip 2 · 1984 北京美国领事馆</div><div>Play · 07 / 22</div></div>
+  <div class="frame" style="display:grid;gap:4vh;align-content:center;min-height:80vh">
+    <div class="clip-tag"><span class="play-icon"></span><span class="clip-num">CLIP 02</span> · SCENE 1 + 14<span class="clip-time">~3 min</span></div>
+    <h1 class="h-hero" style="font-size:8.6vw">1984 签证窗口</h1>
+    <p class="lead" style="max-width:62vw">三个朋友、三个窗口、三种命运——孟晓骏过签、王阳放弃、成东青被拒。</p>
+    <div class="meta-row"><span>议题概念 →</span><span>教育公平</span><span>·</span><span>出国压力</span></div>
+  </div>
+  <div class="foot"><div>请播放视频 · Then proceed</div><div>— · —</div></div>
+</section>
+
+<!-- 8 · Clip 2 concept -->
+<section class="slide light">
+  <div class="chrome"><div>Clip 2 · 议题概念</div><div>Concept · 08 / 22</div></div>
+  <div class="frame grid-2-6-6" style="padding-top:5vh">
+    <div>
+      <div class="kicker">看完 Clip 2 · 我们要带走</div>
+      <h2 class="h-xl" style="font-size:5vw;margin-bottom:3vh">教育公平——<br>从来不是<em>同一道门</em>。</h2>
+      <p class="body-serif" style="max-width:38vw">
+        同一个签证窗口，三种结果——<br>这不是签证官的偶然，是教育资源的必然。<br><br>
+        孟晓骏的「胜券在握」、王阳的「Sorry 我放弃」、成东青的「右手紧握左手」——<br>这三个动作背后，<br>是 1984 年中国年轻人面对「下一道门」时的<br><em>三种社会身份</em>。
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2vh">
+      <div class="callout">
+        <div class="q-big">关键反讽</div>
+        <p class="body-zh" style="margin-top:1vh;font-family:var(--serif-zh)">「20 年后——<br>我最擅长的事就是<em>帮人去美国</em>。」</p>
+        <span class="callout-src">成东青 VO · Scene 14 · 一个被拒签者讲的话</span>
+      </div>
+      <div class="callout">
+        <div class="q-big">课堂讨论 ↓</div>
+        <p class="body-zh" style="margin-top:1vh">1984 年三个人「同时受教育」吗？「教育公平」的真正含义是「同一道门」，还是「不同道门但同样能通过」？</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>这个概念会回到 Q3(c) holistic question · 第 2 段</div><div>— 08 —</div></div>
+</section>
+
+<!-- ============ CLIP 3: broken English ============ -->
+<!-- 9 · Clip 3 frame -->
+<section class="slide hero light">
+  <div class="chrome"><div>Clip 3 · 2003 新梦想大教室</div><div>Play · 09 / 22</div></div>
+  <div class="frame" style="display:grid;gap:4vh;align-content:center;min-height:80vh">
+    <div class="clip-tag"><span class="play-icon"></span><span class="clip-num">CLIP 03</span> · SCENE 3<span class="clip-time">~2 min</span></div>
+    <h1 class="h-hero" style="font-size:8.6vw">broken English</h1>
+    <p class="lead" style="max-width:62vw">王阳一句话颠覆中国式英语教学——「难受的是听的人，你怕什么？」</p>
+    <div class="meta-row"><span>议题概念 →</span><span>教育的本质</span><span>·</span><span>教育权威解构</span></div>
+  </div>
+  <div class="foot"><div>请播放视频 · Then proceed</div><div>— · —</div></div>
+</section>
+
+<!-- 10 · Clip 3 concept -->
+<section class="slide dark">
+  <div class="chrome"><div>Clip 3 · 议题概念</div><div>Concept · 10 / 22</div></div>
+  <div class="frame grid-2-6-6" style="padding-top:5vh">
+    <div>
+      <div class="kicker">看完 Clip 3 · 我们要带走</div>
+      <h2 class="h-xl" style="font-size:5vw;margin-bottom:3vh">教育的本质——<br>不是<em>知识</em>，是<em>自信</em>。</h2>
+      <p class="body-serif" style="max-width:38vw">
+        中国式英语教学一百年来教的是<em>正确</em>——<br>语法、单词、发音<em>都要对</em>。<br><br>
+        王阳一句话翻转了这套体系：<br>「难受的是听的人，你怕什么？」<br><br>
+        他没有教语法，他在教<em>姿态</em>——<br>而「姿态」恰恰是中国传统教育最缺失的<br><em>教育的本质</em>。
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2vh">
+      <div class="callout">
+        <div class="q-big">关键金句</div>
+        <p class="body-zh" style="margin-top:1vh;font-family:var(--serif-zh)">「你们已经被<em>传统教育</em>摧毁了自信。要想开口，<em>首先你要开心</em>。」</p>
+        <span class="callout-src">王阳 · Scene 3 · 一句话教育宣言</span>
+      </div>
+      <div class="callout">
+        <div class="q-big">课堂讨论 ↓</div>
+        <p class="body-zh" style="margin-top:1vh">你被「摧毁自信」过吗？你的英语 / 中文学习中，是「为什么学」难，还是「怎么学」难？</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>把这一概念写进 worksheet Part B · 第 3 行</div><div>— 10 —</div></div>
+</section>
+
+<!-- ============ CLIP 4: 阶梯教室 ============ -->
+<!-- 11 · Clip 4 frame -->
+<section class="slide hero dark">
+  <div class="chrome"><div>Clip 4 · 燕京大学阶梯教室</div><div>Play · 11 / 22</div></div>
+  <div class="frame" style="display:grid;gap:4vh;align-content:center;min-height:80vh">
+    <div class="clip-tag"><span class="play-icon"></span><span class="clip-num">CLIP 04</span> · SCENE 37<span class="clip-time">~3 min</span></div>
+    <h1 class="h-hero" style="font-size:8.6vw">挑战权威</h1>
+    <p class="lead" style="max-width:62vw">孟晓骏当场打断老教授——「筷子不会知道菜的味道，除非你自己去尝。」</p>
+    <div class="meta-row"><span>议题概念 →</span><span>批判性思维</span><span>·</span><span>中西教育差异</span></div>
+  </div>
+  <div class="foot"><div>请播放视频 · Then proceed</div><div>— · —</div></div>
+</section>
+
+<!-- 12 · Clip 4 concept -->
+<section class="slide light">
+  <div class="chrome"><div>Clip 4 · 议题概念</div><div>Concept · 12 / 22</div></div>
+  <div class="frame grid-2-6-6" style="padding-top:5vh">
+    <div>
+      <div class="kicker">看完 Clip 4 · 我们要带走</div>
+      <h2 class="h-xl" style="font-size:5vw;margin-bottom:3vh">批判性思维——<br>是<em>能问</em>，不是<em>会答</em>。</h2>
+      <p class="body-serif" style="max-width:38vw">
+        在中国教育的传统里，<br>「老师说的」=「真理」。<br><br>
+        孟晓骏的「您去过美国吗？」一句话，<br>是中国教育文化最少见的一种动作——<br><em>质疑</em>。<br><br>
+        他不是讨厌老教授，<br>他是在演示一种新的认识方式：<br><em>没有亲身经验，没有发言权</em>。
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2vh">
+      <div class="callout">
+        <div class="q-big">关键比喻</div>
+        <p class="body-zh" style="margin-top:1vh;font-family:var(--serif-zh)">「<em>筷子</em>不会知道菜的味道——<br>除非你自己去尝。」</p>
+        <span class="callout-src">孟晓骏 · Scene 37 · 12 字一个 critical-thinking 隐喻</span>
+      </div>
+      <div class="callout">
+        <div class="q-big">关键反例</div>
+        <p class="body-zh" style="margin-top:1vh">长发男生站起来：「<em>他是我的老师</em>」——一句话暴露了「质疑权威」的社会代价。</p>
+      </div>
+      <div class="callout">
+        <div class="q-big">课堂讨论 ↓</div>
+        <p class="body-zh" style="margin-top:1vh">批判性思维是中国教育「缺失」的，还是「被压制」的？</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>这个概念对应 HSC outcome 3.7 · evaluate features of texts</div><div>— 12 —</div></div>
+</section>
+
+<!-- ============ CLIP 5: Expel/Impel ============ -->
+<!-- 13 · Clip 5 frame -->
+<section class="slide hero light">
+  <div class="chrome"><div>Clip 5 · 燕京大学的最后一课</div><div>Play · 13 / 22</div></div>
+  <div class="frame" style="display:grid;gap:4vh;align-content:center;min-height:80vh">
+    <div class="clip-tag"><span class="play-icon"></span><span class="clip-num">CLIP 05</span> · SCENE 68 + 69<span class="clip-time">~4 min</span></div>
+    <h1 class="h-hero" style="font-size:8.6vw">Expel / Impel</h1>
+    <p class="lead" style="max-width:62vw">成东青被开除前的最后一课——<em>被赶</em> vs <em>自驱</em>，同一个词的两个反向灵魂。</p>
+    <div class="meta-row"><span>议题概念 →</span><span>内驱力</span><span>·</span><span>教育的本质</span><span>·</span><span>教育目的的多元化</span></div>
+  </div>
+  <div class="foot"><div>请播放视频 · Then proceed</div><div>— · —</div></div>
+</section>
+
+<!-- 14 · Clip 5 concept -->
+<section class="slide dark">
+  <div class="chrome"><div>Clip 5 · 议题概念</div><div>Concept · 14 / 22</div></div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker">看完 Clip 5 · 我们要带走</div>
+    <h2 class="h-xl" style="font-size:5vw;margin-bottom:4vh">教育的内驱力——<br>是<em>被推动</em>，不是<em>被押着</em>。</h2>
+    <div class="grid-2-6-6">
+      <div>
+        <p class="body-serif" style="max-width:38vw">
+          <span class="en" style="font-size:2.8vw">Expel.</span><br>
+          被外力推走。<br><br>
+          「为了考燕京大学，我被迫学英语」——<br>
+          这是<em>恐惧</em>驱动的学习。<br><br><br>
+          <span class="en" style="font-size:2.8vw">Impel.</span><br>
+          被内力推动。<br><br>
+          「被爱推动」——<br>
+          这是<em>意义</em>驱动的学习。
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2vh">
+        <div class="callout">
+          <div class="q-big">这一课的反讽</div>
+          <p class="body-zh" style="margin-top:1vh">一直认真听讲的女生——在他喊「不想听课的可以走」时——<em>她</em> 走了。<br><br>体制把他赶走的同时，<em>把他的好学生也一并赶走了</em>。</p>
+        </div>
+        <div class="callout">
+          <div class="q-big">课堂讨论 ↓</div>
+          <p class="body-zh" style="margin-top:1vh">你的中文学习是 Expel 还是 Impel？什么时候开始转的？</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>这个双关词可以直接进 Q4 寂寞 vs 合伙人 立场段</div><div>— 14 —</div></div>
+</section>
+
+<!-- ============ CLIP 6: Loser 演讲 ============ -->
+<!-- 15 · Clip 6 frame -->
+<section class="slide hero dark">
+  <div class="chrome"><div>Clip 6 · 废弃工厂教室</div><div>Play · 15 / 22</div></div>
+  <div class="frame" style="display:grid;gap:4vh;align-content:center;min-height:80vh">
+    <div class="clip-tag"><span class="play-icon"></span><span class="clip-num">CLIP 06</span> · SCENE 101<span class="clip-time">~4 min</span></div>
+    <h1 class="h-hero" style="font-size:8.4vw">Loser 演讲</h1>
+    <p class="lead" style="max-width:62vw">40 度高温、没有风扇、孟晓骏写好了一份「成功演讲稿」——他把它翻过来。</p>
+    <div class="meta-row"><span>议题概念 →</span><span>失败教育</span><span>·</span><span>教育目的的多元化</span><span>·</span><span>情感教育</span></div>
+  </div>
+  <div class="foot"><div>请播放视频 · Then proceed</div><div>— · —</div></div>
+</section>
+
+<!-- 16 · Clip 6 concept -->
+<section class="slide light">
+  <div class="chrome"><div>Clip 6 · 议题概念</div><div>Concept · 16 / 22</div></div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker">看完 Clip 6 · 我们要带走</div>
+    <h2 class="h-xl" style="font-size:5vw;margin-bottom:4vh">失败教育——<br>不是<em>美化失败</em>，是<em>承认它</em>。</h2>
+    <div class="grid-2-6-6">
+      <div>
+        <div class="callout">
+          <div class="q-big">「翻过演讲稿」的象征</div>
+          <p class="body-zh" style="margin-top:1vh">①  拒绝粉饰<br>②  从「校长」翻面成「也是 Loser」<br>③  把师生关系从「我教你」变成「<em>我和你一起</em>」</p>
+        </div>
+      </div>
+      <div>
+        <div class="callout">
+          <div class="q-big">关键数据 + 排比</div>
+          <p class="body-zh" style="margin-top:1vh">44.1% · 39.9% · 3 万人——「失败」从抽象变成可见的统计学事实。<br><br>「Seek the victory in failure / Seed the hope in despairing」——排比 + 头韵把数据翻译成行动语言。</p>
+        </div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:4vh;max-width:80vw;text-align:center">这一段就是下一节课 <em>HSC Q3 拆题</em> 的范文。</p>
+  </div>
+  <div class="foot"><div>把这一概念写进 worksheet Part B · 第 6 行</div><div>— 16 —</div></div>
+</section>
+
+<!-- ============ Q3 worked example ============ -->
+<!-- 17 · Q3 intro -->
+<section class="slide dark">
+  <div class="chrome"><div>HSC Q3 范题</div><div>Drill · 17 / 22</div></div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker">用 Loser 演讲做一次完整的 close-reading</div>
+    <h2 class="h-xl" style="margin-bottom:4vh">HSC Q3 三段式 · 15 分</h2>
+    <div class="pipeline" data-cols="3">
+      <div class="step"><span class="step-nb">(a) · 3 marks</span><div class="step-title">识别与理解</div><div class="step-desc">直接在文中找——答案<em>不出片段</em>。</div></div>
+      <div class="step"><span class="step-nb">(b) · 5 marks</span><div class="step-title">技巧分析</div><div class="step-desc">TEE × 3 ——题目<em>不告诉</em>你哪些技巧，你要自己找。</div></div>
+      <div class="step"><span class="step-nb">(c) · 7 marks</span><div class="step-title">综合分析</div><div class="step-desc">片段 + 全片——「跪 → Expel/Impel → Loser」三段连成一个论点。</div></div>
+    </div>
+    <p class="lead" style="margin-top:5vh;max-width:80vw">Q3 不在 Task 2 考试范围里，<em>但它是 Q4 跨文本作文的肌肉训练</em>。今天先把这套动作做扎实。</p>
+  </div>
+  <div class="foot"><div>Q3 = 拆段 · 拆技巧 · 拉主题</div><div>— 17 —</div></div>
+</section>
+
+<!-- 18 · Q3 (a)(b)(c) walkthrough -->
+<section class="slide light">
+  <div class="chrome"><div>Q3(a)(b)(c) · Loser 演讲</div><div>Walkthrough · 18 / 22</div></div>
+  <div class="frame grid-2-6-6" style="padding-top:5vh">
+    <div>
+      <div class="kicker">三道题，三种深度</div>
+      <h2 class="h-xl" style="font-size:4.6vw;margin-bottom:3vh">先抓内容 →<br>再拆技巧 →<br>最后拉主题。</h2>
+      <p class="body-serif" style="max-width:36vw">
+        每一题写完后问自己：<br>
+        <em>(a) — 我用了片段原文吗？</em><br>
+        <em>(b) — 我有 3 个 TEE 吗？</em><br>
+        <em>(c) — 我用了 ≥4 处证据 + ≥1 处技巧吗？</em>
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2vh">
+      <div class="callout">
+        <div class="q-big">(a) 3 marks · 内容</div>
+        <p class="body-zh" style="margin-top:1vh">成东青为什么说「我也是个 Loser」？给出 2 个理由。</p>
+        <span class="callout-src">考点：identification · 答案在片段内</span>
+      </div>
+      <div class="callout">
+        <div class="q-big">(b) 5 marks · 技巧</div>
+        <p class="body-zh" style="margin-top:1vh">他如何把「失败」从尴尬话题转化成「教学方法」？分析 ≥3 处技巧。</p>
+        <span class="callout-src">推荐技巧：自嘲 · 数字论据 · 比喻 · 排比 · 黑板视觉化</span>
+      </div>
+      <div class="callout">
+        <div class="q-big">(c) 7 marks · 综合</div>
+        <p class="body-zh" style="margin-top:1vh">结合本片段 + Scene 16 + Scene 68，分析他对「教育的目的」的理解经历了怎样的变化？</p>
+        <span class="callout-src">考点：cross-clip synthesis · 拉主题</span>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>这三题完整答案写在 worksheet Part C · 现在开始</div><div>— 18 —</div></div>
+</section>
+
+<!-- ============ Q4 cross-text ============ -->
+<!-- 19 · Q4 题目 -->
+<section class="slide dark">
+  <div class="chrome"><div>HSC Q4 跨文本</div><div>Drill · 19 / 22</div></div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker">Task 2 Section I 的等价题型</div>
+    <h2 class="h-xl" style="font-size:4.4vw;margin-bottom:3vh">「年轻人面对外部冲击的<br>回应方式决定了<br>他们的成长轨迹。」</h2>
+    <p class="body-serif" style="max-width:80vw">
+      请以《寂寞的十七岁》(白先勇) 与《中国合伙人》(陈可辛) 为例，分析这一论述如何通过两位主要人物（杨云峰 / 成东青）体现。从作品的内容与语言特色两方面分析。约 440 字。
+    </p>
+    <div class="meta-row" style="margin-top:4vh"><span>25 分</span><span>·</span><span>4 段结构</span><span>·</span><span>每个 Body 段 3 个小 TEEL</span><span>·</span><span>「综上所述」收尾</span></div>
+  </div>
+  <div class="foot"><div>这就是 W6 Task 2 Section I 的真题</div><div>— 19 —</div></div>
+</section>
+
+<!-- 20 · Q4 4-段结构 -->
+<section class="slide light">
+  <div class="chrome"><div>Q4 · 4 段结构</div><div>Structure · 20 / 22</div></div>
+  <div class="frame" style="padding-top:5vh">
+    <div class="kicker">Band 6 的脊柱</div>
+    <h2 class="h-xl" style="margin-bottom:4vh">4 段 + 小 TEEL × 3 cycle</h2>
+    <div class="pipeline" data-cols="4">
+      <div class="step"><span class="step-nb">§1 · 65 字</span><div class="step-title">开头</div><div class="step-desc">重新表述论述 + 表明立场 + 点出两部作品。</div></div>
+      <div class="step"><span class="step-nb">§2 · 150 字</span><div class="step-title">Body 1 — 寂寞</div><div class="step-desc">杨云峰 = 被动逃避。3 个小 TEEL：逃学 / 钻被窝 / 趴铁轨。</div></div>
+      <div class="step"><span class="step-nb">§3 · 150 字</span><div class="step-title">Body 2 — 合伙人</div><div class="step-desc">成东青 = 主动重塑。3 个小 TEEL：下跪 / 重生 / Loser 演讲。</div></div>
+      <div class="step"><span class="step-nb">§4 · 70 字</span><div class="step-title">综上所述</div><div class="step-desc">概括两文 + 重申立场。</div></div>
+    </div>
+    <p class="lead" style="margin-top:5vh;max-width:80vw;text-align:center">两个 body 用<em>截然相反</em>的论据形成对比——<em>这是 Band 6 的写法</em>。</p>
+  </div>
+  <div class="foot"><div>这套结构在 marking criteria 已经被定义为 Band 6 模板</div><div>— 20 —</div></div>
+</section>
+
+<!-- 21 · Q4 在堂写作 -->
+<section class="slide hero dark">
+  <div class="chrome"><div>Q4 · 在堂写作</div><div>Write · 21 / 22</div></div>
+  <div class="frame" style="display:grid;gap:4vh;align-content:center;min-height:80vh">
+    <div class="kicker">现在 · 25 分钟</div>
+    <h1 class="h-hero" style="font-size:7.6vw">写 §1 + §2 ·<br>约 215 字。</h1>
+    <p class="lead" style="max-width:70vw">
+      §1 开头 (~65 字)：用自己的话重述论述 + 表明立场（杨云峰=被动 / 成东青=主动）+ 点名两部作品<br>
+      §2 Body 1 — 寂寞十七岁 (~150 字)：3 个小 TEEL（逃学 / 钻被窝 / 趴铁轨），每个 cycle 用 1 处技巧分析（心理描写 / 反复 / 极端象征）
+    </p>
+    <div class="meta-row"><span>§3 + §4 回家完成</span><span>·</span><span>下周课堂订正</span></div>
+  </div>
+  <div class="foot"><div>worksheet Part D · 25 分钟动笔写</div><div>— 21 —</div></div>
+</section>
+
+<!-- 22 · Closing -->
+<section class="slide hero light">
+  <div class="chrome"><div>Week 4 完 · W5 + W6 预告</div><div>Closing · 22 / 22</div></div>
+  <div class="frame" style="display:grid;gap:5vh;align-content:center;min-height:80vh">
+    <div class="kicker">Week 5 + Week 6 路线图</div>
+    <h1 class="h-hero" style="font-size:7.2vw">从「电影里的教育」<br>到「<em>能写</em>的教育」。</h1>
+    <p class="lead" style="max-width:66vw">
+      W5 → Section I (Q4 跨文本) + Section II (Q6/Q7 演讲稿) 集中训练<br>
+      W6 → Saturday 30 May, 8:45 am · 1h 20min · 40 分
+    </p>
+    <div class="meta-row"><span>Q4 §3+§4 HW</span><span>·</span><span>W5 Booklet 已派发</span></div>
+  </div>
+  <div class="foot"><div>End of W4 · See you next Saturday</div><div>— End —</div></div>
+</section>
+
+</div>
+
+<div id="nav"></div>
+
+<script>
+const VS = `attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}`;
+const FS_DARK = `precision highp float;
+uniform vec2 u_resolution;uniform float u_time;uniform vec2 u_mouse;
+vec3 palette(float t,vec3 a,vec3 b,vec3 c,vec3 d){return a+b*cos(6.28318*(c*t+d));}
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_resolution.xy;
+  vec2 p=uv*2.0-1.0;p.x*=u_resolution.x/u_resolution.y;
+  vec2 m=u_mouse*2.0-1.0;m.x*=u_resolution.x/u_resolution.y;
+  float md=length(p-m);
+  float mr=sin(md*15.0-u_time*4.0)*exp(-md*3.0);p+=mr*0.08;
+  vec2 p0=p;
+  for(float i=1.0;i<4.0;i++){
+    p.x+=0.1/i*sin(i*3.0*p.y+u_time*0.4)+0.05;
+    p.y+=0.1/i*cos(i*2.0*p.x+u_time*0.3)-0.05;
+  }
+  float r=length(p);float ang=atan(p.y,p.x);
+  vec3 a=vec3(0.10,0.13,0.20);
+  vec3 b=vec3(0.04,0.06,0.10);
+  vec3 c=vec3(1.0,1.0,1.0);
+  vec3 d=vec3(0.1,0.2,0.4);
+  vec3 col=palette(r*1.5+p0.x*0.5+u_time*0.1,a,b,c,d);
+  float hi=pow(sin(p.x*4.0+p.y*3.0+u_time)*0.5+0.5,8.0);
+  col+=hi*0.08;
+  vec3 base=vec3(0.04,0.08,0.15);
+  col=mix(base,col,0.85);
+  gl_FragColor=vec4(col,1.0);
+}`;
+const FS_LIGHT = `precision highp float;
+uniform vec2 u_resolution;uniform float u_time;uniform vec2 u_mouse;
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){
+  vec2 i=floor(p),f=fract(p);
+  float a=hash(i),b=hash(i+vec2(1,0));
+  float c=hash(i+vec2(0,1)),d=hash(i+vec2(1,1));
+  vec2 u=f*f*(3.0-2.0*f);
+  return mix(a,b,u.x)+(c-a)*u.y*(1.0-u.x)+(d-b)*u.x*u.y;
+}
+float fbm(vec2 p){
+  float v=0.0,a=0.5;
+  mat2 m=mat2(0.80,0.60,-0.60,0.80);
+  for(int i=0;i<5;i++){v+=a*noise(p);p=m*p*2.02;a*=0.5;}
+  return v;
+}
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_resolution.xy;
+  vec2 p=uv;p.x*=u_resolution.x/u_resolution.y;
+  vec2 m=u_mouse;m.x*=u_resolution.x/u_resolution.y;
+  vec2 md=p-m;float dl=length(md);
+  p+=normalize(md+vec2(0.0001))*exp(-dl*5.0)*0.03;
+  vec2 q=vec2(fbm(p*1.8+u_time*0.07),fbm(p*1.8+vec2(5.2,1.3)+u_time*0.06));
+  vec2 r=vec2(fbm(p*2.0+q*1.3+vec2(1.7,9.2)+u_time*0.05),
+              fbm(p*2.0+q*1.3+vec2(8.3,2.8)+u_time*0.04));
+  float f=fbm(p*2.2+r*1.5);
+  vec3 silverDark=vec3(0.82,0.85,0.90);
+  vec3 paper=vec3(0.945,0.952,0.96);
+  vec3 col=mix(silverDark,paper,f);
+  float ph=r.x*2.2+u_time*0.35;
+  col+=vec3(0.5,0.65,0.95)*sin(ph)*0.05;
+  float hl=smoothstep(0.48,0.92,f);
+  col+=hl*0.06;
+  gl_FragColor=vec4(col,1.0);
+}`;
+const mouse={x:0.5,y:0.5};
+addEventListener('mousemove',e=>{mouse.x=e.clientX/innerWidth;mouse.y=e.clientY/innerHeight});
+function bootGL(canvasId, fsSrc){
+  const canvas=document.getElementById(canvasId);
+  const gl=canvas.getContext('webgl',{alpha:false,antialias:true});
+  if(!gl) return ()=>false;
+  const mk=(t,s)=>{const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh};
+  const prog=gl.createProgram();
+  gl.attachShader(prog,mk(gl.VERTEX_SHADER,VS));
+  gl.attachShader(prog,mk(gl.FRAGMENT_SHADER,fsSrc));
+  gl.linkProgram(prog);gl.useProgram(prog);
+  const buf=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+  const pos=gl.getAttribLocation(prog,'position');
+  gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);
+  const lRes=gl.getUniformLocation(prog,'u_resolution');
+  const lT=gl.getUniformLocation(prog,'u_time');
+  const lM=gl.getUniformLocation(prog,'u_mouse');
+  const resize=()=>{
+    const d=Math.min(window.devicePixelRatio||1,2);
+    canvas.width=innerWidth*d;canvas.height=innerHeight*d;
+    gl.viewport(0,0,canvas.width,canvas.height);
+  };
+  addEventListener('resize',resize);resize();
+  return (tSec)=>{
+    gl.uniform2f(lRes,canvas.width,canvas.height);
+    gl.uniform1f(lT,tSec);
+    gl.uniform2f(lM,mouse.x,1-mouse.y);
+    gl.drawArrays(gl.TRIANGLES,0,6);
+    return true;
+  };
+}
+const drawDark=bootGL('bg-dark',FS_DARK);
+const drawLight=bootGL('bg-light',FS_LIGHT);
+const t0=Date.now();
+(function loop(){
+  const t=(Date.now()-t0)/1000;
+  drawDark(t);drawLight(t);
+  requestAnimationFrame(loop);
+})();
+const deck=document.getElementById('deck');
+const slides=deck.querySelectorAll('.slide');
+const nav=document.getElementById('nav');
+let idx=0,total=slides.length,lock=false;
+deck.style.width=(total*100)+'vw';
+slides.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.className='dot';b.dataset.i=i;b.setAttribute('aria-label','Page '+(i+1));
+  b.onclick=()=>go(i);
+  nav.appendChild(b);
+});
+function go(n){
+  if(lock)return;
+  idx=Math.max(0,Math.min(total-1,n));
+  deck.style.transform=`translateX(${-idx*100}vw)`;
+  nav.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  const el=slides[idx];
+  const th=el.dataset.theme||(el.classList.contains('light')?'light':(el.classList.contains('dark')?'dark':'dark'));
+  document.body.classList.toggle('light-bg',th==='light');
+  lock=true;setTimeout(()=>lock=false,700);
+}
+let overviewOn=false;
+const ov=document.createElement('div');
+ov.id='overview';
+ov.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(var(--ink-rgb),.92);backdrop-filter:blur(12px);display:none;overflow-y:auto;padding:4vh 4vw';
+document.body.appendChild(ov);
+function buildOverview(){
+  ov.innerHTML='';
+  const grid=document.createElement('div');
+  grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:2vh 1.6vw;max-width:90vw;margin:0 auto';
+  slides.forEach((s,i)=>{
+    const card=document.createElement('div');
+    card.style.cssText='cursor:pointer;border-radius:6px;overflow:hidden;border:2px solid '+(i===idx?'rgba(var(--paper-rgb),.8)':'rgba(var(--paper-rgb),.15)');
+    const wrap=document.createElement('div');
+    wrap.style.cssText='width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;pointer-events:none;background:'+(s.classList.contains('light')?'var(--paper)':'var(--ink)');
+    const clone=s.cloneNode(true);
+    clone.style.cssText='width:100vw;height:100vh;transform:scale('+(1/4.5)+');transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none';
+    wrap.appendChild(clone);
+    const label=document.createElement('div');
+    label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper);opacity:.7';
+    label.textContent=(i+1)+' / '+total;
+    card.appendChild(wrap);card.appendChild(label);
+    card.onclick=()=>{toggleOverview();go(i)};
+    grid.appendChild(card);
+  });
+  ov.appendChild(grid);
+}
+function toggleOverview(){
+  overviewOn=!overviewOn;
+  if(overviewOn){buildOverview();ov.style.display='block';}
+  else{ov.style.display='none';}
+}
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.preventDefault();toggleOverview();return;}
+  if(overviewOn)return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='ArrowDown')go(idx+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='ArrowUp')go(idx-1);
+  if(e.key==='Home')go(0);
+  if(e.key==='End')go(total-1);
+});
+let wheelTO=null,wheelAcc=0;
+addEventListener('wheel',e=>{
+  wheelAcc+=e.deltaY+e.deltaX;
+  if(Math.abs(wheelAcc)>50){go(idx+(wheelAcc>0?1:-1));wheelAcc=0;}
+  clearTimeout(wheelTO);wheelTO=setTimeout(()=>wheelAcc=0,150);
+},{passive:true});
+let tx=0,ty=0;
+addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+addEventListener('touchend',e=>{
+  const dx=(e.changedTouches[0].clientX-tx);
+  const dy=(e.changedTouches[0].clientY-ty);
+  if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))go(idx+(dx<0?1:-1));
+},{passive:true});
+go(0);
+</script>
+</body>
+</html>
